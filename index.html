@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCT_100 - 化工控制实训平台</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">PCT_100</a>
+    <div class="links">
+      <a href="index.html" class="active">首页</a>
+      <a href="product.html">产品说明书</a>
+      <a href="tech.html">技术手册</a>
+      <a href="about.html">关于</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>PCT_100 化工装置控制器</h1>
+  <p class="sub">Chemical Process Control Training Device</p>
+  <p class="sub">ESP32-C3 · FreeRTOS · MQTT · 物联网实训平台</p>
+  <span class="ver">V1.11 · Device ID: PCT_100_039</span>
+</section>
+
+<main class="container">
+
+<div class="card intro">
+  <h2>欢迎使用 PCT_100</h2>
+  <p>PCT_100 是面向<strong>嵌入式开发教学</strong>与<strong>化工过程控制实训</strong>的综合实验平台。采用 <span class="highlight">ESP32-C3-WROOM-02-N4</span> 主控模组，集成温度/光照传感器、多路继电器、OLED 显示屏及 WS2812 全彩指示灯。</p>
+  <p>支持本地按键操控、传感器自动联动、WiFi 联网配网、MQTT 远程监控以及 FreeRTOS 多线程并行处理。</p>
+</div>
+
+<h2>快速导航</h2>
+<div class="grid3">
+  <a href="product.html" class="nav-card">
+    <span class="icon">&#128218;</span>
+    <h3>产品说明书</h3>
+    <p>完整的技术规格、GPIO 引脚分配、系统架构、硬件接线与灯效说明</p>
+  </a>
+  <a href="tech.html" class="nav-card">
+    <span class="icon">&#128295;</span>
+    <h3>技术手册</h3>
+    <p>ESP32-C3 开发入门、FreeRTOS 多线程编程、MQTT 协议实战指南</p>
+  </a>
+  <a href="about.html" class="nav-card">
+    <span class="icon">&#127891;</span>
+    <h3>关于项目</h3>
+    <p>河北地质大学嵌入式开发实践课 · 校企合作 · 实训成果</p>
+  </a>
+</div>
+
+<h2>核心亮点</h2>
+<div class="grid">
+  <div class="card">
+    <span class="icon">&#127777;</span><h3>温光双传感器</h3>
+    <p>DS18B20 温度 + GL5516 光敏，lux 公式实时换算，自动阈值联动风扇与灯光</p>
+  </div>
+  <div class="card">
+    <span class="icon">&#128268;</span><h3>WiFi + MQTT 远程控制</h3>
+    <p>STA 模式联网、Flash 凭据记忆、串口配网、MQTT JSON 指令收发与主动上报</p>
+  </div>
+  <div class="card">
+    <span class="icon">&#127752;</span><h3>6 种彩灯灯效</h3>
+    <p>WS2812B 全彩 LED，从正常渐变到严重警报，灯效直观反映设备运行状态</p>
+  </div>
+  <div class="card">
+    <span class="icon">&#9881;</span><h3>FreeRTOS 多线程</h3>
+    <p>三线程并行：主线程传感控制 + WiFi/MQTT 通信线程 + LED 指示灯线程</p>
+  </div>
+  <div class="card">
+    <span class="icon">&#128421;</span><h3>OLED 实时显示</h3>
+    <p>SH1106 128×64 I2C 屏，5 行信息：模式、温光数值、设备状态、网络连接</p>
+  </div>
+  <div class="card">
+    <span class="icon">&#9889;</span><h3>双按键 + 自动模式</h3>
+    <p>KEY1 总电源锁、KEY2 短按循环/长按切模式，自动模式传感器联动</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>PCT_100 化工装置控制器 · V1.11</p>
+  <p>河北地质大学 · HEBEI GEO UNIVERSITY · 嵌入式开发实践课</p>
+</footer>
+
+</body>
+</html>

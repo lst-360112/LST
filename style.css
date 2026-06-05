@@ -1,0 +1,76 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#080c1a;color:#c8d0e0;line-height:1.8;overflow-x:hidden}
+
+/* ===== 导航栏 ===== */
+nav{position:fixed;top:0;width:100%;background:rgba(8,12,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e2a4a;z-index:1000}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
+.logo{font-size:1.3em;font-weight:700;background:linear-gradient(90deg,#00d4ff,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.links{display:flex;gap:8px}
+.links a{color:#8899bb;text-decoration:none;padding:6px 16px;border-radius:8px;font-size:.9em;transition:.2s}
+.links a:hover,.links a.active{color:#00d4ff;background:#00d4ff12}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(160deg,#080c1a 0%,#101840 40%,#0a1a30 70%,#081020 100%);text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.08) 0%,transparent 70%);transform:translateX(-50%);pointer-events:none;animation:pulse 6s ease-in-out infinite}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00d4ff44,transparent)}
+.hero h1{font-size:3em;background:linear-gradient(90deg,#00d4ff,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px;position:relative;z-index:1}
+.hero .sub{font-size:1.1em;color:#667;margin-bottom:6px;position:relative;z-index:1}
+.ver{display:inline-block;color:#00d4ff;border:1px solid #00d4ff40;padding:4px 18px;border-radius:20px;font-size:.85em;margin-top:12px;position:relative;z-index:1}
+@keyframes pulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+
+/* ===== 布局 ===== */
+.container{max-width:1100px;margin:0 auto;padding:20px 20px 60px}
+
+/* ===== 卡片 ===== */
+.card{background:linear-gradient(135deg,#111133,#0f0f28);border-radius:16px;padding:28px;margin:16px 0;border:1px solid #1a1a4a;transition:.3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:-1px;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,#00d4ff33,transparent);transition:.3s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4);border-color:#00d4ff30}
+.card:hover::before{background:linear-gradient(90deg,transparent,#00d4ff66,transparent)}
+
+/* ===== 网格 ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+
+/* ===== 导航卡片 ===== */
+.nav-card{display:block;background:linear-gradient(135deg,#111133,#0f0f28);border-radius:16px;padding:32px 24px;border:1px solid #1a1a4a;text-decoration:none;color:#c8d0e0;transition:.3s;text-align:center}
+.nav-card:hover{border-color:#00d4ff50;transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.nav-card .icon{font-size:3em;display:block;margin-bottom:12px}
+.nav-card h3{color:#00d4ff;margin-bottom:8px}
+.nav-card p{color:#889;font-size:.9em}
+
+/* ===== 表格 ===== */
+table{width:100%;border-collapse:collapse;margin:12px 0;border-radius:12px;overflow:hidden}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #1a1a4a}
+th{color:#00d4ff;font-weight:600;background:#0c0c24;font-size:.9em}
+td{font-size:.9em}
+tr:hover{background:#0c0c2422}
+
+/* ===== 架构图 ===== */
+.arch-flow{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;padding:20px 0}
+.arch-box{background:#111133;border:2px solid #1a1a5a;border-radius:16px;padding:20px 24px;text-align:center;min-width:130px;font-weight:600}
+.arch-box.core{border-color:#00d4ff;background:linear-gradient(135deg,#00d4ff15,#00ff8815)}
+.arch-arrow{font-size:1.8em;color:#00d4ff}
+
+/* ===== 标题 ===== */
+h2{font-size:1.8em;color:#00d4ff;border-left:4px solid #00ff88;padding-left:16px;margin:48px 0 20px}
+h3{color:#00ff88;margin:16px 0 8px;font-size:1.1em}
+
+/* ===== 工具类 ===== */
+.highlight{color:#00ff88;font-weight:600}
+.tag{display:inline-block;padding:5px 14px;border-radius:6px;font-size:.82em;margin:4px;background:#00d4ff12;color:#00d4ff;border:1px solid #00d4ff28}
+code{background:#0c0c24;padding:2px 8px;border-radius:4px;color:#00d4ff;font-size:.9em}
+pre{background:#0c0c24;padding:16px;border-radius:10px;overflow-x:auto;border:1px solid #1a1a4a;font-size:.88em;line-height:1.6}
+ol,ul{padding-left:20px}
+li{margin:4px 0}
+
+/* ===== 页脚 ===== */
+footer{text-align:center;padding:36px 20px;color:#556;font-size:.85em;border-top:1px solid #1a1a3a;margin-top:40px}
+
+@media(max-width:640px){
+  .hero h1{font-size:1.8em}
+  .hero{padding:100px 16px 50px}
+  .nav-inner{flex-wrap:wrap;gap:8px;justify-content:center}
+  .links a{padding:4px 10px;font-size:.8em}
+  .container{padding:12px}
+}

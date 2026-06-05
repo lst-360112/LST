@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品说明书 - PCT_100 化工装置控制器</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo">PCT_100</a>
+<div class="links">
+<a href="index.html">首页</a>
+<a href="product.html" class="active">产品说明书</a>
+<a href="tech.html">技术手册</a>
+<a href="about.html">关于</a>
+</div>
+</div>
+</nav>
+<main class="container" style="padding-top:80px">
+<h2>产品概述</h2>
+<div class="card img-card">
+<img src="board.jpg" alt="PCT_100 化工装置控制器实物图" style="width:100%;max-width:600px;display:block;margin:0 auto;border-radius:12px">
+<p style="text-align:center;color:#667;margin-top:12px;font-size:.85em">PCT_100 化工控制实训装置实物图</p>
+</div>
+<div class="card">
+<p>PCT_100 是面向<strong>嵌入式开发教学</strong>的化工过程控制实训装置，采用 <span class="highlight">ESP32-C3-WROOM-02-N4</span> 模组，集成多路传感器、继电器、OLED 显示屏及 WS2812 全彩指示灯，支持本地控制、传感器联动、WiFi 联网、MQTT 远程监控与多线程并行处理。</p>
+</div>
+<h2>技术规格</h2>
+<table>
+<tr><th>项目</th><th>参数</th></tr>
+<tr><td>主控芯片</td><td>ESP32-C3-WROOM-02-N4 (RISC-V 160MHz)</td></tr>
+<tr><td>无线通信</td><td>Wi-Fi 802.11 b/g/n (2.4GHz) + BLE 5.0</td></tr>
+<tr><td>Flash / SRAM</td><td>4MB Flash / 400KB SRAM</td></tr>
+<tr><td>温度传感器</td><td>DS18B20 (GPIO10), -55~+125°C, 精度 ±0.5°C</td></tr>
+<tr><td>光照传感器</td><td>GL5516 + 10KΩ 分压 (GPIO1 ADC)</td></tr>
+<tr><td>OLED 屏幕</td><td>SH1106 128×64 I2C, SDA=GPIO4, SCL=GPIO5</td></tr>
+<tr><td>全彩 LED</td><td>WS2812B ×1, GPIO0 单总线驱动</td></tr>
+<tr><td>继电器</td><td>4 路 5V (GPIO 2,3,6,7)</td></tr>
+<tr><td>电源</td><td>Type-C 5V → ME6211 LDO → 3.3V</td></tr>
+<tr><td>操作系统</td><td>FreeRTOS (ESP-IDF)</td></tr>
+</table>
+
+<h2>GPIO 引脚分配</h2>
+<table>
+<tr><th>GPIO</th><th>功能</th><th>GPIO</th><th>功能</th></tr>
+<tr><td>0</td><td>WS2812 全彩灯</td><td>10</td><td>DS18B20 温度</td></tr>
+<tr><td>1</td><td>GL5516 光敏 ADC</td><td>20</td><td>KEY1 总开关</td></tr>
+<tr><td>2</td><td>继电器 1</td><td>21</td><td>KEY2 按键</td></tr>
+<tr><td>3</td><td>继电器 2</td><td>4</td><td>OLED SDA</td></tr>
+<tr><td>6</td><td>继电器 3 / 灯光</td><td>5</td><td>OLED SCL</td></tr>
+<tr><td>7</td><td>继电器 4 / 风扇</td><td>9</td><td>板载 LED</td></tr>
+</table>
+
+<h2>系统架构</h2>
+<div class="arch-flow">
+<div class="arch-box">传感器层<br><small>DS18B20 · GL5516</small></div>
+<div class="arch-arrow">→</div>
+<div class="arch-box core">ESP32-C3<br><small>FreeRTOS 三线程</small></div>
+<div class="arch-arrow">→</div>
+<div class="arch-box">执行层<br><small>4路继电器 · WS2812</small></div>
+<div class="arch-arrow">→</div>
+<div class="arch-box">显示/通信<br><small>OLED · MQTT · WiFi</small></div>
+</div>
+
+<h2>软件模块</h2>
+<table>
+<tr><th>模块</th><th>文件</th><th>说明</th></tr>
+<tr><td>主程序</td><td>PCT_100.ino</td><td>FreeRTOS 三线程、传感器采集、逻辑控制</td></tr>
+<tr><td>按键</td><td>key.h/cpp</td><td>KEY1 轮询消抖、KEY2 CHANGE 中断长短按</td></tr>
+<tr><td>继电器</td><td>relay.h/cpp</td><td>4路 + 板载LED, 位掩码控制</td></tr>
+<tr><td>光敏</td><td>adc_light.h/cpp</td><td>ADC 读取、lux 换算、阈值联动</td></tr>
+<tr><td>温度</td><td>temp_sensor.h/cpp</td><td>DS18B20 异步读取、阈值联动</td></tr>
+<tr><td>OLED</td><td>oled.h/cpp</td><td>SH1106 U8G2 驱动, 5行中文UI</td></tr>
+<tr><td>彩灯</td><td>ws2812.h/cpp</td><td>WS2812B 6种灯效模式</td></tr>
+<tr><td>WiFi</td><td>wifi_config.h/cpp</td><td>STA模式、Flash凭据、串口配网</td></tr>
+<tr><td>MQTT</td><td>my_mqtt.h/cpp</td><td>JSON指令、状态主动上报</td></tr>
+</table>
+
+<h2>WS2812 灯效</h2>
+<div class="grid2">
+<div class="card"><h3>&#128308;&#128994; 严重警报</h3>灯+风扇同时开启<br><small>RGB 各双闪 100ms</small></div>
+<div class="card"><h3>&#128308;&#128994;&#128309; 光照越限</h3>仅灯光开启<br><small>RGB 各 300ms</small></div>
+<div class="card"><h3>&#128308;&#128994;&#128309; 温度越限</h3>仅风扇开启<br><small>RGB 各 500ms</small></div>
+<div class="card"><h3>&#127754; MQTT 离线</h3><small>红→绿→灭→蓝→灭 渐变</small></div>
+<div class="card"><h3>&#128308;&#128994; WiFi 断开</h3><small>红绿闪 200ms + 灭 500ms</small></div>
+<div class="card"><h3>&#9989; 正常</h3><small>RGB 各 1s 渐变</small></div>
+</div>
+</main>
+<footer><p>PCT_100 · V1.11 · 河北地质大学 · HEBEI GEO UNIVERSITY</p></footer>
+</body>
+</html>
